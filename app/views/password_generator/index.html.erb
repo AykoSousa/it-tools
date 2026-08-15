@@ -1,0 +1,35 @@
+<h2 class="page-title">Password Generator</h2>
+
+<div class="card">
+  <turbo-frame id="password_generator_app">
+    <%= form_with url: password_generator_path, method: :post do |form| %>
+      <div class="field">
+        <%= form.label :number_of_carachters, "Lenght" %>
+        <%= form.range_field :number_of_carachters, min: 1, max: 50, step: 1, value: 16 %>
+      </div>
+
+      <div class="checkbox-grid">
+        <label class="checkbox-label">
+          <%= form.check_box :upper, {}, "1", "0" %>
+          <span>Upper (A-Z)</span>
+        </label>
+        <label class="checkbox-label">
+          <%= form.check_box :number, {}, "1", "0" %>
+          <span>Number (0-9)</span>
+        </label>
+        <label class="checkbox-label">
+          <%= form.check_box :special, {}, "1", "0" %>
+          <span>Special chars (!@#$)</span>
+        </label>
+      </div>
+
+      <%= form.submit "Generate Password", class: "btn btn-primary btn-block" %>
+    <% end %>
+
+    <% if @password.present? %>
+      <div class="result-block">
+        <div class="result-terminal"><%= @password %></div>
+      </div>
+    <% end %>
+  </turbo-frame>
+</div>
