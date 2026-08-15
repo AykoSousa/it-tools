@@ -1,0 +1,339 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+/* ==========================================================================
+   IT Tools — folha de estilos própria (sem framework/build step)
+   ========================================================================== */
+
+/* ---- Design tokens (modo claro) ---- */
+:root {
+  --bg-page: #f9fafb;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: #f9fafb;
+  --bg-result: #f9fafb;
+  --border-color: #e5e7eb;
+  --border-dashed: #d1d5db;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --hover-bg: #f3f4f6;
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-text: #2563eb;
+  --btn-secondary-bg: #e5e7eb;
+  --btn-secondary-bg-hover: #d1d5db;
+  --terminal-bg: #111827;
+  --terminal-text: #4ade80;
+  --terminal-border: #3f3f46;
+}
+
+/* ---- Design tokens (modo escuro) ---- */
+html.dark {
+  --bg-page: #18181b;
+  --bg-surface: #27272a;
+  --bg-surface-alt: #3f3f46;
+  --bg-result: #09090b;
+  --border-color: #3f3f46;
+  --border-dashed: #52525b;
+  --text-primary: #f4f4f5;
+  --text-secondary: #d4d4d8;
+  --text-muted: #a1a1aa;
+  --hover-bg: #3f3f46;
+  --input-bg: #18181b;
+  --input-border: #52525b;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-text: #60a5fa;
+  --btn-secondary-bg: #3f3f46;
+  --btn-secondary-bg-hover: #52525b;
+  --terminal-bg: #030712;
+  --terminal-text: #4ade80;
+  --terminal-border: #3f3f46;
+}
+
+/* ---- Reset básico ---- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  font-family: "Roboto", sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  transition: background-color .3s ease, color .3s ease;
+}
+
+/* ---- Sidebar ---- */
+.sidebar {
+  width: 16rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-surface);
+  border-right: 1px solid var(--border-color);
+  transition: background-color .3s ease, border-color .3s ease;
+}
+
+.sidebar-header {
+  padding: 1.5rem;
+}
+
+.sidebar-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-text);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  overflow-y: auto;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .75rem 1rem;
+  border-radius: .5rem;
+  text-decoration: none;
+  color: var(--text-secondary);
+  transition: background-color .15s ease, color .15s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--hover-bg);
+}
+
+.nav-link.active {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.theme-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .5rem;
+  border-radius: .375rem;
+  border: 1px solid var(--input-border);
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  cursor: pointer;
+  transition: background-color .15s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--hover-bg);
+}
+
+.theme-toggle .icon-dark { display: inline-flex; }
+.theme-toggle .icon-light { display: none; }
+.theme-toggle .label-dark { display: inline; }
+.theme-toggle .label-light { display: none; }
+
+html.dark .theme-toggle .icon-dark { display: none; }
+html.dark .theme-toggle .icon-light { display: inline-flex; }
+html.dark .theme-toggle .label-dark { display: none; }
+html.dark .theme-toggle .label-light { display: inline; }
+
+/* ---- Conteúdo principal ---- */
+.main-content {
+  margin-left: 16rem;
+  flex: 1;
+  padding: 2rem;
+}
+
+.content-wrapper {
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem;
+}
+
+/* ---- Card ---- */
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: .75rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+  transition: background-color .3s ease, border-color .3s ease;
+}
+
+/* ---- Formulários ---- */
+.field {
+  margin-bottom: 1rem;
+}
+
+.field label,
+.field-label {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 500;
+}
+
+.field input[type="text"],
+.field input[type="range"],
+.field textarea {
+  width: 100%;
+  padding: .75rem;
+  border-radius: .5rem;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  font: inherit;
+  outline: none;
+  transition: box-shadow .15s ease, border-color .15s ease;
+}
+
+.field input[type="text"]:focus,
+.field textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.field input[type="range"] {
+  padding: 0;
+  height: .5rem;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--accent);
+}
+
+/* ---- Botões ---- */
+.btn {
+  display: inline-block;
+  padding: .5rem 1.5rem;
+  border-radius: .5rem;
+  border: none;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color .15s ease;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-secondary {
+  background-color: var(--btn-secondary-bg);
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--btn-secondary-bg-hover);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  padding: .75rem 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, .2);
+}
+
+.btn-group {
+  display: flex;
+  gap: .5rem;
+}
+
+/* ---- Resultado ---- */
+.result-block {
+  margin-top: 1.5rem;
+}
+
+.result-label {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 500;
+  color: var(--accent-text);
+}
+
+.result-box {
+  padding: 1rem;
+  min-height: 60px;
+  background-color: var(--bg-result);
+  border: 1px dashed var(--border-dashed);
+  border-radius: .5rem;
+  font-family: "Roboto Mono", monospace;
+  word-break: break-all;
+}
+
+.result-terminal {
+  padding: 1rem;
+  text-align: center;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.25rem;
+  word-break: break-all;
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+  border: 2px solid var(--terminal-border);
+  border-radius: .5rem;
+}
+
+/* Ícones Material */
+.material-icons-outlined {
+  font-size: 1.25em;
+  line-height: 1;
+  vertical-align: middle;
+}
