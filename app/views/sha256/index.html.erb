@@ -1,0 +1,21 @@
+<h2 class="page-title">SHA-256 Hash</h2>
+
+<div class="card">
+  <turbo-frame id="sha256_app">
+    <%= form_with url: sha256_path, method: :post do |form| %>
+      <div class="field">
+        <%= form.label :text, "Text to convert" %>
+        <%= form.text_field :text, value: @input_text, placeholder: "Write your string here...", autocomplete: "off" %>
+      </div>
+
+      <%= form.submit "Generate SHA-256", class: "btn btn-primary" %>
+    <% end %>
+
+    <% if @sha256_hash.present? %>
+      <div class="result-block">
+        <span class="result-label">Result (SHA-256):</span>
+        <div class="result-box"><%= @sha256_hash %></div>
+      </div>
+    <% end %>
+  </turbo-frame>
+</div>
