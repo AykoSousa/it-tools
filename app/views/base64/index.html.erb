@@ -1,0 +1,21 @@
+<h2 class="page-title">Base64 Encode</h2>
+
+<div class="card">
+  <turbo-frame id="base64_app">
+    <%= form_with url: base64_path, method: :post do |form| %>
+      <div class="field">
+        <%= form.label :text, "Text to convert" %>
+        <%= form.text_field :text, value: @input_text, placeholder: "Write your string here...", autocomplete: "off" %>
+      </div>
+
+      <%= form.submit "Generate Base64", class: "btn btn-primary" %>
+    <% end %>
+
+    <% if @base64.present? %>
+      <div class="result-block">
+        <span class="result-label">Result (Base64):</span>
+        <div class="result-box"><%= @base64 %></div>
+      </div>
+    <% end %>
+  </turbo-frame>
+</div>
