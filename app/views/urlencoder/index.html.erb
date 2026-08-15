@@ -1,0 +1,26 @@
+<h2 class="page-title">URL Encode/Decode</h2>
+
+<div class="card">
+  <turbo-frame id="urlencoder_app">
+
+    <%= form_with method: :post do |form| %>
+      <div class="field">
+        <%= form.label :uri, "Enter URL or Text" %>
+        <%= form.text_area :uri, value: @input_uri, rows: 4, placeholder: "https://exemplo.com?query=value" %>
+      </div>
+
+      <div class="btn-group">
+        <%= form.submit "Encode", formaction: urlencoder_encode_path, class: "btn btn-primary" %>
+        <%= form.submit "Decode", formaction: urlencoder_decode_path, class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+
+    <% if @result_uri.present? %>
+      <div class="result-block">
+        <span class="result-label">Result (<%= @action_type %>):</span>
+        <div class="result-box"><%= @result_uri %></div>
+      </div>
+    <% end %>
+
+  </turbo-frame>
+</div>
