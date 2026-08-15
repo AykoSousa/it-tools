@@ -1,0 +1,22 @@
+<h2 class="page-title">Hash MD5 Generator</h2>
+
+<div class="card">
+  <turbo-frame id="md5_app">
+    <%= form_with url: md5_path, method: :post do |form| %>
+      <div class="field">
+        <%= form.label :text, "Text to convert" %>
+        <%= form.text_field :text, value: @input_text, placeholder: "Write your string here...", autocomplete: "off" %>
+      </div>
+
+      <%= form.submit "Generate MD5", class: "btn btn-primary" %>
+    <% end %>
+
+  
+    <% if @md5_hash.present? %>
+      <div class="result-block">
+        <span class="result-label">Result (MD5):</span>
+        <div class="result-box"><%= @md5_hash %></div>
+      </div>
+    <% end %>
+  </turbo-frame>
+</div>
